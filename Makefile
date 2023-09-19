@@ -6,7 +6,7 @@
 #    By: dams <dams@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 19:01:35 by dams              #+#    #+#              #
-#    Updated: 2023/09/11 00:11:34 by dams             ###   ########.fr        #
+#    Updated: 2023/09/19 00:21:09 by dams             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJS	=	$(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror 
 
 RM	=	rm -rf
 

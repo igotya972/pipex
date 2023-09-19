@@ -6,40 +6,32 @@
 /*   By: dams <dams@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:26:26 by dams              #+#    #+#             */
-/*   Updated: 2023/09/15 01:20:23 by dams             ###   ########.fr       */
+/*   Updated: 2023/09/19 18:29:47 by dams             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "printf/libftprintf.h"
+#ifndef PIPEX_H
+# define PIPEX_H
 
-/*  Pipex/pipex.c  */
-typedef enum	e_bool
-{
-	false,
-	true
-}				t_bool;
- 
-typedef struct	s_pipex
-{
-	int		*in_fd;
-	int		*out_fd;
-	int		cmd_count;
-	char	**cmd_paths;
-	char	**cmd_args;
-	char	*cmd;
-	t_bool	here_doc; // use `int` if you prefer
-	t_bool	is_invalid_infile;
-}				t_pipex;
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <stdbool.h>
+# include <stdarg.h>
+# include <stddef.h>
+# include <string.h>
+# include <limits.h>
+# include <sys/wait.h>
 
+/*	utils.c	*/
 char	*path_cmd(char **path, char *cmd);
+void	ft_error(char *str);
+/*	pipex.c	*/
 int		parent_process(int *fd, char **argv, char **env);
 int		child_process(int *fd, char **argv, char **env);
-
-/*	libft	*/
+/*	libft/	*/
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

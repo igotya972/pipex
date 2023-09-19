@@ -6,43 +6,49 @@
 /*   By: dams <dams@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 00:06:11 by dams              #+#    #+#             */
-/*   Updated: 2023/09/15 00:52:42 by dams             ###   ########.fr       */
+/*   Updated: 2023/09/19 18:20:40 by dams             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	ft_error(char *str)
+{
+	perror(str);
+	exit(errno);
+}
+
 static char	**get_path(char **env)
 {
 	int		i;
 	char	**path;
-	char	*env_path;
 
-	if (!env)
-		return (NULL);
-	env_path = NULL;
-	i = 0;
-	while (env[i++])
+	i = -1;
+	while (env[++i])
 	{
 		if (strncmp(env[i], "PATH=", 5) == 0)
 		{
-			env_path = strdup(env[i]);
-			break ;
+			if (ft_strlen(env[i]) < 6)
+				ft_error("Path is empty");
+			path = ft_split(&env[i][5], ':');
+			if (!path)
+				ft_error("failed try again");
+			return (path);
 		}
 	}
-	path = ft_split(env_path, ':');
-	if (env_path)
-		free(env_path);
-	return (path);
+	ft_error("Error get path");
+	return (NULL);
 }
 
 static char	**add_slash(char **path)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	path = get_path(path);
-	while (path[i++])
+	if (!path)
+		ft_error("error path");
+	while (path[++i])
 	{
 		path[i] = ft_strjoin(path[i], "/");
 	}
@@ -55,25 +61,19 @@ char	*path_cmd(char **path, char *cmd)
 	char	*cmd_path;
 
 	i = 0;
-	if (!cmd)
-		return (NULL);
-	while (cmd[i++])
-	{
-		if (cmd[i] == '/')
-		{
-			if (access(cmd, F_OK | X_OK) == 0)
-				return (cmd);
-			return (NULL);
-		}
-	}
+	cmd_path = NULL;
 	path = add_slash(path);
-	i = 0;
-	while (path[i++])
+	while (path[i])
 	{
 		cmd_path = ft_strjoin(path[i], cmd);
-		if (access(cmd_path, F_OK | X_OK) == 0)
+		if (!cmd_path)
+			ft_error("Malloc failed");
+		if (access(cmd_path, F_OK) == 0)
+		{
 			return (cmd_path);
-		free (cmd_path);
+		}
+		i++;
 	}
-	return (NULL);
+	ft_error("Command not found");
+	return (0);
 }
