@@ -3,19 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dams <dams@student.42.fr>                  +#+  +:+       +#+         #
+#    By: dferjul <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 19:01:35 by dams              #+#    #+#              #
-#    Updated: 2023/09/19 00:21:09 by dams             ###   ########.fr        #
+#    Updated: 2023/09/19 19:24:20 by dferjul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	pipex.c	\
 			utils.c	\
-			printf/ft_flags.c	\
-			printf/ft_printf_tools_bis.c	\
-			printf/ft_printf_tools.c	\
-			printf/ft_printf.c	\
 			libft/ft_split.c	\
 			libft/ft_strncmp.c	\
 			libft/ft_strjoin.c	\

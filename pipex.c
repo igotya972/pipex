@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dams <dams@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:26:13 by dams              #+#    #+#             */
-/*   Updated: 2023/09/19 18:24:43 by dams             ###   ########.fr       */
+/*   Updated: 2023/09/19 19:25:48 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	parent_process(int *fd, char **argv, char **env)
 
 int	main(int ac, char **av, char *envp[])
 {
-	int	pid;
-	int	fd[2];
+	pid_t	pid;
+	int		fd[2];
 
 	if (ac == 5)
 	{
